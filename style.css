@@ -1,0 +1,9 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+.form-box {
+    width: 400px; /* กำหนดความกว้างให้กับฟอร์ม */
+}
