@@ -1,64 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>บันทึกประเภทสินค้า</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-<link rel="stylesheet" href="style.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+0xw9eD5ff2RM59T5N5Q1H2u5wqNY3rfUtQj3dD" crossorigin="anonymous">
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.php">หน้าแรก</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            บันทึกข้อมูล
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="type.php">บันทึกข้อมูลประเภท</a></li>
-            <li><a class="dropdown-item" href="brand.php">บันทึกข้อมูลยี่ห้อ</a></li>
-            <li><a class="dropdown-item" href="product.php">บันทึกสินค้า</a></li>
-            <li><a class="dropdown-item" href="sale.php">บันทึกการขาย</a></li>
-            <li><a class="dropdown-item" href="employee.php">บันทึกพนักงาน</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            แสดงข้อมูล
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="views/V_type.php">แสดงข้อมูลประเภท</a></li>
-            <li><a class="dropdown-item" href="views/V_brand.php">แสดงข้อมูลยี่ห้อ</a></li>
-            <li><a class="dropdown-item" href="views/V_product.php">แสดงข้อมูลสินค้า</a></li>
-            <li><a class="dropdown-item" href="views/V_sale.php">แสดงข้อมูลการขาย</a></li>
-            <li><a class="dropdown-item" href="views/V_employee.php">แสดงข้อมูลพนักงาน</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            แก้ไขข้อมูล
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="update/Up_type.php">แก้ไขข้อมูลประเภท</a></li>
-            <li><a class="dropdown-item" href="update/Up_brand.php">แก้ไขข้อมูลยี่ห้อ</a></li>
-            <li><a class="dropdown-item" href="update/Up_product.php">แก้ไขข้อมูลสินค้า</a></li>
-            <li><a class="dropdown-item" href="update/Up_sale.php">แก้ไขข้อมูลการขาย</a></li>
-            <li><a class="dropdown-item" href="update/Up_employee.php">แก้ไขข้อมูลพนักงาน</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
-    <h1 class="text-center">CRUD-PHP</h1>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-p4J0W1HbD3D6tvw5QslQtl1jSx36hc5G1tt5l/+z0KbsWyM69cG+rFbR8M/OqvV" crossorigin="anonymous"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>
