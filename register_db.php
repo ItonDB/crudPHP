@@ -1,54 +1,72 @@
-<?php 
-    session_start();
-    include('conn.php');
-    
-    $errors = array();
+<?php
+session_start();
 
-    if (isset($_POST['reg_user'])) {
-        $u_email = mysqli_real_escape_string($conn, $_POST['u_email']);
-        $u_namw = mysqli_real_escape_string($conn, $_POST['u_name']);
-        $u_password = mysqli_real_escape_string($conn, $_POST['u_password']);
-        $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
+// เชื่อมต่อฐานข้อมูล
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "register_db";
 
-        if (empty($u_name)) {
-            array_push($errors, "Username is required");
-            $_SESSION['error'] = "Username is required";
-        }
-        if (empty($u_mail)) {
-            array_push($errors, "Email is required");
-            $_SESSION['error'] = "Email is required";
-        }
-        if (empty($u_password)) {
-            array_push($errors, "Password is required");
-            $_SESSION['error'] = "Password is required";
-        }
-        if ($password != $password2) {
-            array_push($errors, "The two passwords do not match");
-            $_SESSION['error'] = "The two passwords do not match";
-        }
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-        $user_check_query = "SELECT * FROM users_db WHERE u_email = '$u_email'LIMIT 1";
-        $query = mysqli_query($conn, $user_check_query);
-        $result = mysqli_fetch_assoc($query);
+// ตรวจสอบการเชื่อมต่อ
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-        if ($result) { // if user exists
-            if ($result['u_email'] === $u_email) {
-                array_push($errors, "Username already exists");
-            }
-        }
+// ตรวจสอบการส่งข้อมูลผ่าน POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($conn, $_POST["username"]);
+    $email = mysqli_real_escape_string($conn, $_POST["email"]);
+    $password_1 = $_POST["password_1"];
+    $password_2 = $_POST["password_2"];
 
-        if (count($errors) == 0) {
-            $u_password = md5($u_password_1);
-
-            $sql = "INSERT INTO users_db (u_email, u_name, u_password) VALUES ('$u_email', '$u_name', '$u_password')";
-            mysqli_query($conn, $sql);
-
-            $_SESSION['u_email'] = $u_email;
-            $_SESSION['success'] = "You are now logged in";
-            header('location: login.php');
-        } else {
-            header("location: register.php");
-        }
+    // ตรวจสอบว่ารหัสผ่านตรงกันหรือไม่
+    if ($password_1 !== $password_2) {
+        echo "<script type='text/javascript'>";
+        echo "alert('รหัสผ่านไม่ตรงกัน');";
+        echo "window.location = 'register.php';";
+        echo "</script>";
+        exit();
     }
 
+    // ตรวจสอบว่าชื่อผู้ใช้หรืออีเมลซ้ำหรือไม่
+    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ? OR email = ? LIMIT 1");
+    $stmt->bind_param("ss", $username, $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if ($row['username'] === $username) {
+            echo "<script type='text/javascript'>";
+            echo "alert('ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว');";
+            echo "window.location = 'register.php';";
+            echo "</script>";
+        } elseif ($row['email'] === $email) {
+            echo "<script type='text/javascript'>";
+            echo "alert('อีเมลนี้ถูกใช้ไปแล้ว');";
+            echo "window.location = 'register.php';";
+            echo "</script>";
+        }
+    } else {
+        // บันทึกรหัสผ่านแบบไม่เข้ารหัส
+        $stmt = $conn->prepare("INSERT INTO user (username, email, password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $username, $email, $password_1);
+
+        if ($stmt->execute()) {
+            echo "<script type='text/javascript'>";
+            echo "alert('สมัครสำเร็จแล้ว');";
+            echo "window.location = 'login.php';";
+            echo "</script>";
+        } else {
+            echo "<script type='text/javascript'>";
+            echo "alert('เกิดข้อผิดพลาดในการสมัคร');";
+            echo "window.location = 'register.php';";
+            echo "</script>";
+        }
+    }
+    $stmt->close();
+}
+$conn->close();
 ?>

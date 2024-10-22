@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    margin-left: 100px;
+    background-color: #f0f4f8;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+    width: calc(25% - 40px); /* 3 รายการใน 1 แถว */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-item button {
+    background-color: #0ecf15; /* สีพื้นหลัง */
+    color: white;              /* สีข้อความ */
+    border: none;              /* ไม่มีกรอบ */
+    padding: 10px;             /* ระยะห่างภายใน */
+    margin: 5px;
+    margin-right: 10px;            /* ระยะห่างระหว่างปุ่ม */
+    cursor: pointer;           /* แสดงว่าคลิกได้ */
+    transition: background-color 0.3s; /* เปลี่ยนสีเมื่อเอาเมาส์ไปวาง */
+    width: 100%;               /* กำหนดความกว้างของปุ่มให้เต็ม */
+    max-width: 90px;          /* กำหนดความกว้างสูงสุด */
+}
+
+.product-item button:hover {
+    background-color: #09910d; /* สีพื้นหลังเมื่อเอาเมาส์ไปวาง */
+}

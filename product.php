@@ -6,6 +6,27 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 ?>
+
+<?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "register_db";
+
+    // Create Connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed" . mysqli_connect_error());
+    } 
+
+// ดึงข้อมูลสินค้า
+$sql = "SELECT p_id, p_name, p_price, p_pic FROM product";
+$result = $conn->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +36,7 @@ if (!isset($_SESSION['username'])) {
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="view.css" />
 </head>
 <body>
   <aside class="sidebar">
@@ -77,6 +99,38 @@ if (!isset($_SESSION['username'])) {
       </div>
     </div>
   </aside>
+
+  <div class="product-list">
+    <?php
+    if ($result->num_rows > 0) {
+        // แสดงรายการสินค้าทีละรายการ
+        while ($row = $result->fetch_assoc()) {
+            echo '<div class="product-item">';
+            echo '<img src="img/' . $row["p_pic"] . '" alt="' . $row["p_name"] . '">';
+            echo '<h2>' . $row["p_name"] . '</h2>';
+            echo '<p>ราคา: ฿' . number_format($row["p_price"], 2) . '</p>';
+            echo '<div class="button-group">'; // กลุ่มปุ่ม
+            echo '<button class="select-button">เลือก</button>'; // ปุ่มเลือก
+            echo '<form action="edit_product.php" method="GET" style="display:inline;">'; // ฟอร์มแก้ไข
+            echo '<input type="hidden" name="product_id" value="' . $row["p_id"] . '">'; // รหัสสินค้า
+            echo '<button type="submit" class="edit-button">แก้ไข</button>';   // ปุ่มแก้ไข
+            echo '</form>';
+            echo '<form action="delete_product.php" method="POST" style="display:inline;">'; // ฟอร์มลบ
+            echo '<input type="hidden" name="product_id" value="' . $row["p_id"] . '">'; // รหัสสินค้า
+            echo '<button type="submit" class="delete-button">ลบ</button>';    // ปุ่มลบ
+            echo '</form>';
+            echo '</div>';
+            echo '</div>';
+        }
+    } else {
+        echo "<p>ไม่มีสินค้าที่จะแสดง</p>";
+    }
+    $conn->close(); // ปิดการเชื่อมต่อ
+    ?>
+</div>
+
+
+
 
 </body>
 </html>

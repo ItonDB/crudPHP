@@ -1,44 +1,38 @@
-<?php 
-    session_start();
-    include('conn.php');
+<?php
+session_start();
 
-    $errors = array();
+//connect database
+$servername = "localhost";
+$username ="root";
+$password = "";
+$dbname = "register_db";
 
-    if (isset($_POST['login'])) {
-        $u_email = mysqli_real_escape_string($conn, $_POST['u_email']);
-        $u_password = mysqli_real_escape_string($conn, $_POST['u_password']);
-
-        if (empty($u_email)) {
-            array_push($errors, "Username is required");
-        }
-
-        if (empty($u_password)) {
-            array_push($errors, "Password is required");
-        }
-
-        if (count($errors) == 0) {
-            $u_password = md5($u_password);
-            $query = "SELECT * FROM users_db WHERE u_email = '$u_email' AND u_password = '$u_password' ";
-            $result = mysqli_query($conn, $query);
-
-            if (mysqli_num_rows($result) == 1) {
-                $_SESSION['u_email'] = $u_email;
-                $_SESSION['success'] = "Your are now logged in";
-                header("location: index.php");
-                exit();
-            } else {
-                array_push($errors, "Wrong Username or Password");
-                $_SESSION['error'] = "Wrong Username or Password!";
-                header("location: login.php");
-                exit();
-            }
-        } else {
-            array_push($errors, "Username & Password is required");
-            $_SESSION['error'] = "Username & Password is required";
-            header("location: login.php");
-            exit();
-        }
-    }
-    
-
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// ตรวจสอบเชื่อมต่อ
+if(!$conn){
+	die("Connection failed: ".mysqli_connect_error());
+}
+//ตรวจสอบการส่งข้อมูลผ่านแบบ POST
+if ($_SERVER["REQUEST_METHOD"]=="POST"){
+	$username = $_POST["username"];
+	$password_1 = $_POST["password_1"];
+	
+	// เตรียมคำสั่ง sql เพื่อตรวจสอบข้อมูล
+	$sql = "SELECT * FROM user WHERE username ='$username' AND password = '$password_1'";
+	$result = mysqli_query($conn, $sql);
+	
+	//ตรวจสอบผลลัพธ์
+	if (mysqli_num_rows($result) == 1){
+		$_SESSION['username'] = $username;
+		echo "<script type = 'text/javascript'>";
+		echo "alert('เข้าสู่ระบบเรียบร้อย');";
+		echo "window.location = 'index.php';";
+		echo "</script>";
+	}else{
+		echo "<script type = 'text/javascript'>";
+		echo "alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');";
+		echo "window.location = 'login.php';";
+		echo "</script>";
+	}
+}
 ?>

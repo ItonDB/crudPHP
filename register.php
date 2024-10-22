@@ -1,7 +1,4 @@
-<?php
-    session_start();
-    include('conn.php');
-?>
+
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en" dir="ltr">
@@ -15,31 +12,20 @@
   <div class="wrapper">
     <h2>Sign up</h2>
     <form action="register_db.php" method="post" enctype="multipart/form-data">
-        <?php include('errors.php'); ?>
-    <?php if (isset($_SESSION['error'])) : ?>
-              <div class="error" >
-                <h3>
-                  <?php
-                    echo $_SESSION['error'];
-                    unset($_SESSION['error'])
-                  ?>
-                </h3>
-              </div>
-            <?php endif ?>
       <div class="input-box">
-        <input type="text" id="u_name" name="u_name" placeholder="Enter your name" required>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
       </div>
       <div class="input-box">
-        <input type="text" id="u_email" name="u_email" placeholder="Enter your email" required>
+        <input type="text" id="email" name="email" placeholder="Enter your email" required>
       </div>
       <div class="input-box">
-        <input type="password" id="u_password" name="u_password" placeholder="Create password" required>
+        <input type="password" id="password_1" name="password_1" placeholder="Create password" required>
       </div>
       <div class="input-box">
-        <input type="password" id="u_password2" name="u_password2" placeholder="Confirm password" required>
+        <input type="password" id="password_2" name="password_2" placeholder="Confirm password" required>
       </div>
       <div class="input-box button">
-        <input type="Submit" name="reg_user" value="Register Now">
+        <input type="Submit" value="Register Now">
       </div>
       <div class="text">
         <h3>Already have an account? <a href="login.php">Login now</a></h3>

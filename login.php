@@ -1,7 +1,3 @@
-<?php
-    session_start();
-    include('conn.php');
-?>
 
 <!DOCTYPE html>
 <!-- Source Codes By CodingNepal - www.codingnepalweb.com -->
@@ -16,17 +12,6 @@
   <div class="login_form">
     <!-- Login form container -->
     <form action="login_db.php" method="post" enctype="multipart/form-data" >
-    <?php include('errors.php'); ?>
-    <?php if (isset($_SESSION['error'])) : ?>
-              <div class="error" >
-                <h3>
-                  <?php
-                    echo $_SESSION['error'];
-                    unset($_SESSION['error'])
-                  ?>
-                </h3>
-              </div>
-            <?php endif ?>
       <h3>Log in with</h3>
 
       <div class="login_option">
@@ -53,8 +38,8 @@
       </p>
       <!-- Email input box -->
       <div class="input_box">
-        <label for="email">Email</label>
-        <input type="email" id="u_email" name="u_email" placeholder="Enter email address" required />
+        <label for="username">username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required />
       </div>
 
       <!-- Paswwrod input box -->
@@ -64,11 +49,11 @@
           <a href="#">Forgot Password?</a>
         </div>
 
-        <input type="password" id="u_password" name="u_password" placeholder="Enter your password" required />
+        <input type="password" id="password_1" name="password_1" placeholder="Enter your password" required />
       </div>
 
        <!-- Login button -->
-      <button type="submit" name="login" >Log In</button>
+      <button type="submit" name="login_user" >Log In</button>
 
       <p class="sign_up">Don't have an account? <a href="register.php">Sign up</a></p>
     </form>

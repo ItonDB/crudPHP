@@ -15,6 +15,7 @@ if (!isset($_SESSION['username'])) {
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="from.css"/>
 </head>
 <body>
   <aside class="sidebar">
@@ -78,5 +79,27 @@ if (!isset($_SESSION['username'])) {
     </div>
   </aside>
 
+  <div class="form-container">
+    <h2>บันทึกสินค้า</h2>
+    <form action="save_product.php" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="name">ชื่อสินค้า</label>
+        <input type="text" id="p_name" name="p_name" placeholder="กรอกชื่อของคุณ" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">ราคา</label>
+        <input type="text" id="p_price" name="p_price" placeholder="กรอกอีเมลของคุณ" required>
+      </div>
+
+      <div class="form-group">
+        <label for="profileImage">เพิ่มรูปภาพ</label>
+        <input type="file" id="p_pic" name="p_pic" accept="image/*" required>
+      </div>
+
+      <div class="form-group">
+        <button type="submit">บันทึก</button>
+      </div>
+    </form>
 </body>
 </html>
