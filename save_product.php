@@ -24,7 +24,7 @@
 		$c = count($array_last) -1;
 		$lastname = strtolower($array_last[$c]);
 		
-	if($lastname == "png" or $lastname == "jpg" or $lastname  == "jpg"){
+	if($lastname == "png" or $lastname == "jpeg" or $lastname  == "jpg"){
 		$sql2 = "SELECT max(p_id) FROM product";	
 		$result2 = mysqli_query($conn,$sql2);
 		$row = mysqli_fetch_row($result2);
