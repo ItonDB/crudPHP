@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home page</title>
+  <title>Add page</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css" />
@@ -20,11 +20,11 @@ if (!isset($_SESSION['username'])) {
 <body>
   <aside class="sidebar">
     <div class="sidebar-header">
-      <img src="images/logo.png" alt="logo" />
+      <img src="picture/blockchain.png" alt="logo" />
     </div>
     <ul class="sidebar-links">
       <h4>
-        <span>Main Menu</span>
+        <span>DATA</span>
         <div class="menu-separator"></div>
       </h4>
       <li>
@@ -38,17 +38,17 @@ if (!isset($_SESSION['username'])) {
         <a href="#"><span class="material-symbols-outlined"> monitoring </span>Analytic</a>
       </li>
       <h4>
-        <span>General</span>
+        <span>MENU</span>
         <div class="menu-separator"></div>
       </h4>
       <li>
         <a href="product.php"><span class="material-symbols-outlined"> folder </span>Product</a>
       </li>
       <li>
-        <a href="#"><span class="material-symbols-outlined"> groups </span>Groups</a>
+        <a href="edit.php"><span class="material-symbols-outlined"> groups </span>Edit</a>
       </li>
       <li>
-        <a href="add_product.php"><span class="material-symbols-outlined"> move_up </span>Add Product</a>
+        <a href="add_product.php"><span class="material-symbols-outlined"> move_up </span>Add</a>
       </li>
       <li>
         <a href="#"><span class="material-symbols-outlined"> flag </span>All Reports</a>
@@ -61,9 +61,6 @@ if (!isset($_SESSION['username'])) {
         <span>Account</span>
         <div class="menu-separator"></div>
       </h4>
-      <li>
-        <a href="#"><span class="material-symbols-outlined"> account_circle </span>Profile</a>
-      </li>
       <li>
         <a href="logout.php"><span class="material-symbols-outlined"> logout </span>Logout</a>
       </li>
@@ -84,12 +81,12 @@ if (!isset($_SESSION['username'])) {
     <form action="save_product.php" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="name">ชื่อสินค้า</label>
-        <input type="text" id="p_name" name="p_name" placeholder="กรอกชื่อของคุณ" required>
+        <input type="text" id="p_name" name="p_name" placeholder="กรอกชื่อสินค้า" required>
       </div>
 
       <div class="form-group">
         <label for="email">ราคา</label>
-        <input type="text" id="p_price" name="p_price" placeholder="กรอกอีเมลของคุณ" required>
+        <input type="text" id="p_price" name="p_price" placeholder="กรอกราคา" required>
       </div>
 
       <div class="form-group">

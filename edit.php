@@ -5,26 +5,20 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
-?>
 
-<?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "register_db";
+include('conn.php');
 
-    // Create Connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+// ตรวจสอบการเชื่อมต่อ
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-    // Check connection
-    if (!$conn) {
-        die("Connection failed" . mysqli_connect_error());
-    } 
+$show = "SELECT * FROM product";
+$query = mysqli_query($conn, $show);
 
-// ดึงข้อมูลสินค้า
-$sql = "SELECT p_id, p_name, p_price, p_pic FROM product";
-$result = mysqli_query($conn,$sql);
-
+if (!$query) {
+    die("Query failed: " . mysqli_error($conn));
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,11 +26,10 @@ $result = mysqli_query($conn,$sql);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product</title>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>Edit page</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="view.css" />
+  <link rel="stylesheet" href="table.css" />
 </head>
 <body>
   <aside class="sidebar">
@@ -75,8 +68,7 @@ $result = mysqli_query($conn,$sql);
         <a href="#"><span class="material-symbols-outlined"> flag </span>All Reports</a>
       </li>
       <li>
-        <a href="#"><span class="material-symbols-outlined">
-            notifications_active </span>Notifications</a>
+        <a href="#"><span class="material-symbols-outlined"> notifications_active </span>Notifications</a>
       </li>
       <h4>
         <span>Account</span>
@@ -91,35 +83,39 @@ $result = mysqli_query($conn,$sql);
         <div class="user-detail">
         <?php if (isset($_SESSION['username'])) : ?>
             <p><strong><?php echo $_SESSION['username']; ?></strong></p>
-        <?php endif ?>
+        <?php endif; ?>
         </div>
       </div>
     </div>
   </aside>
 
-  <div class="product-list">
-    <?php
-    if ($result->num_rows > 0) {
-        // แสดงรายการสินค้าทีละรายการ
-        while ($row = $result->fetch_assoc()) {
-            echo '<div class="product-item">';
-            echo '<img src="img/' . $row["p_pic"] . '" alt="' . $row["p_name"] . '">';
-            echo '<h2>' . $row["p_name"] . '</h2>';
-            echo '<p>ราคา: ฿' . number_format($row["p_price"], 2) . '</p>';
-            echo '<div class="button-group">'; // กลุ่มปุ่ม
-            echo '<button class="select-button">สั่ง</button>'; // ปุ่มเลือก
-            echo '</div>';
-            echo '</div>';
-        }
-    } else {
-        echo "<p>ไม่มีสินค้าที่จะแสดง</p>";
-    }
-    $conn->close(); // ปิดการเชื่อมต่อ
-    ?>
-</div>
-
-
-
-
+  <div class="container">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>รหัสสินค้า</th>
+                    <th>ชื่อสินค้า</th>
+                    <th>ราคา</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php while($result_product = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
+                <tr>
+                    <td><?php echo $result_product['p_id']; ?></td>
+                    <td><?php echo $result_product['p_name']; ?></td>
+                    <td><?php echo $result_product['p_price']; ?></td>
+                    <td>
+                        <a href="update_product.php?id=<?php echo $result_product['p_id']; ?>" class="btn btn-success">แก้ไข</a>
+                        <a href="delete_product.php?id=<?php echo $result_product['p_id']; ?>" class="btn btn-delete">ลบ</a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+  </div>
+            
 </body>
 </html>

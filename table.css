@@ -1,0 +1,184 @@
+/* รีเซ็ต CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* จัดกลางหน้า */
+body {
+    background-color: #f4f7fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* กล่องหลัก */
+.container {
+    max-width: 800px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-group button:hover {
+    background-color: #45a049;
+}
+
+/* ตารางรายการสินค้า */
+.table-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-container h2 {
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* ปุ่มจัดการ */
+button {
+    padding: 8px 12px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.edit-button {
+    background-color: #ffc107;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #e0a800;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+/* รองรับหน้าจอเล็ก */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    table th, table td {
+        font-size: 14px;
+    }
+}
+/* สไตล์ทั่วไปสำหรับปุ่ม */
+.btn {
+    display: inline-block;
+    padding: 10px 20px; /* ขนาดของปุ่ม */
+    margin: 10px; /* ช่องว่างรอบปุ่ม */
+    font-size: 16px; /* ขนาดตัวอักษร */
+    color: #fff; /* สีตัวอักษร */
+    background-color: #007bff; /* สีพื้นหลัง */
+    border: none; /* ไม่มีเส้นขอบ */
+    border-radius: 5px; /* มุมโค้ง */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อชี้ไปที่ปุ่ม */
+    transition: background-color 0.3s, transform 0.2s; /* เอฟเฟกต์ในการเปลี่ยนสีและขนาด */
+    text-decoration: none;
+}
+
+/* เอฟเฟกต์เมื่อชี้เมาส์ไปที่ปุ่ม */
+.btn:hover {
+    background-color: #0056b3; /* เปลี่ยนสีเมื่อชี้เมาส์ */
+    transform: translateY(-2px); /* ยกปุ่มขึ้น */
+}
+
+/* เอฟเฟกต์เมื่อคลิกปุ่ม */
+.btn:active {
+    transform: translateY(1px); /* ลดระดับเมื่อคลิก */
+}
+
+/* สไตล์สำหรับปุ่มลบ */
+.btn-delete {
+    background-color: #dc3545; /* สีพื้นหลังสำหรับปุ่มลบ */
+}
+
+/* เอฟเฟกต์เมื่อชี้เมาส์ไปที่ปุ่มลบ */
+.btn-delete:hover {
+    background-color: #c82333; /* เปลี่ยนสีเมื่อชี้เมาส์ */
+}
+/* สไตล์สำหรับปุ่มลบ */
+.btn-success {
+    background-color: #ccc914; /* สีพื้นหลังสำหรับปุ่มลบ */
+}
+
+/* เอฟเฟกต์เมื่อชี้เมาส์ไปที่ปุ่มลบ */
+.btn-success:hover {
+    background-color: #bb9f00; /* เปลี่ยนสีเมื่อชี้เมาส์ */
+}

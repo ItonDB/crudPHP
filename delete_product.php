@@ -1,39 +1,23 @@
-<?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "register_db";
+<?php 
+include('conn.php');
 
-    // Create Connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+if (isset($_GET['id'])) {
+    $p_id = $_GET['id'];
+    // ใช้ prepared statements เพื่อป้องกัน SQL injection
+    $query = "DELETE FROM product WHERE p_id = '$p_id'";
 
-    // Check connection
-    if (!$conn) {
-        die("Connection failed" . mysqli_connect_error());
-    } 
+    $result = mysqli_query($conn, $query);
 
-// ตรวจสอบว่ามีข้อมูลที่ส่งมา
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['p_id'])) {
-    $p_id = $_POST['p_id'];
-
-    // สร้างคำสั่ง SQL เพื่อลบข้อมูล
-    $sql = "DELETE FROM product WHERE p_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $p_id); // ใช้ 'i' เนื่องจากเป็น integer
-
-    // ตรวจสอบผลลัพธ์
-    if ($stmt->execute()) {
-        echo "ลบสินค้าสำเร็จ";
+    if (!$result) {
+        die("Query failed: " . mysqli_error($conn));
     } else {
-        echo "เกิดข้อผิดพลาด: " . $conn->error;
+        echo "<script type='text/javascript'>";
+        echo "alert('ลบสำเร็จ');";
+        echo "window.location = 'edit.php';";
+        echo "</script>";
+        exit();
     }
-
-    // ปิดการเชื่อมต่อ
-    $stmt->close();
+} else {
+    echo "No ID specified for deletion.";
 }
-$conn->close();
-
-// เปลี่ยนเส้นทางกลับไปที่หน้าสินค้า
-header("Location: product.php"); // เปลี่ยนให้เป็น URL ของหน้าสินค้าของคุณ
-exit();
 ?>

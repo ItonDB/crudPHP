@@ -22,7 +22,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 60%;
     text-align: center;
   }
   
@@ -59,6 +59,7 @@
   
   /* ปุ่มอัปโหลดไฟล์ */
   .form-group input[type="file"] {
+    width: 100%;
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ddd;

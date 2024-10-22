@@ -19,11 +19,11 @@ if (!isset($_SESSION['username'])) {
 <body>
   <aside class="sidebar">
     <div class="sidebar-header">
-      <img src="images/logo.png" alt="logo" />
+      <img src="picture/blockchain.png" alt="logo" />
     </div>
     <ul class="sidebar-links">
       <h4>
-        <span>Main Menu</span>
+        <span>DATA</span>
         <div class="menu-separator"></div>
       </h4>
       <li>
@@ -37,17 +37,17 @@ if (!isset($_SESSION['username'])) {
         <a href="#"><span class="material-symbols-outlined"> monitoring </span>Analytic</a>
       </li>
       <h4>
-        <span>General</span>
+        <span>MENU</span>
         <div class="menu-separator"></div>
       </h4>
       <li>
         <a href="product.php"><span class="material-symbols-outlined"> folder </span>Product</a>
       </li>
       <li>
-        <a href="#"><span class="material-symbols-outlined"> groups </span>Groups</a>
+        <a href="edit.php"><span class="material-symbols-outlined"> groups </span>Edit</a>
       </li>
       <li>
-        <a href="add_product.php"><span class="material-symbols-outlined"> move_up </span>Add Product</a>
+        <a href="add_product.php"><span class="material-symbols-outlined"> move_up </span>Add</a>
       </li>
       <li>
         <a href="#"><span class="material-symbols-outlined"> flag </span>All Reports</a>
@@ -60,9 +60,6 @@ if (!isset($_SESSION['username'])) {
         <span>Account</span>
         <div class="menu-separator"></div>
       </h4>
-      <li>
-        <a href="#"><span class="material-symbols-outlined"> account_circle </span>Profile</a>
-      </li>
       <li>
         <a href="logout.php"><span class="material-symbols-outlined"> logout </span>Logout</a>
       </li>
