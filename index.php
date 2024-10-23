@@ -30,12 +30,6 @@ if (!isset($_SESSION['username'])) {
         <a href="index.php">
           <span class="material-symbols-outlined"> dashboard </span>Dashboard</a>
       </li>
-      <li>
-        <a href="#"><span class="material-symbols-outlined"> overview </span>Overview</a>
-      </li>
-      <li>
-        <a href="#"><span class="material-symbols-outlined"> monitoring </span>Analytic</a>
-      </li>
       <h4>
         <span>MENU</span>
         <div class="menu-separator"></div>
@@ -50,11 +44,8 @@ if (!isset($_SESSION['username'])) {
         <a href="add_product.php"><span class="material-symbols-outlined"> move_up </span>Add</a>
       </li>
       <li>
-        <a href="#"><span class="material-symbols-outlined"> flag </span>All Reports</a>
-      </li>
-      <li>
-        <a href="#"><span class="material-symbols-outlined">
-            notifications_active </span>Notifications</a>
+        <a href="order.php"><span class="material-symbols-outlined">
+            notifications_active </span>Order</a>
       </li>
       <h4>
         <span>Account</span>

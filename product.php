@@ -52,12 +52,6 @@ $result = mysqli_query($conn,$sql);
         <a href="index.php">
           <span class="material-symbols-outlined"> dashboard </span>Dashboard</a>
       </li>
-      <li>
-        <a href="#"><span class="material-symbols-outlined"> overview </span>Overview</a>
-      </li>
-      <li>
-        <a href="#"><span class="material-symbols-outlined"> monitoring </span>Analytic</a>
-      </li>
       <h4>
         <span>MENU</span>
         <div class="menu-separator"></div>
@@ -72,11 +66,8 @@ $result = mysqli_query($conn,$sql);
         <a href="add_product.php"><span class="material-symbols-outlined"> move_up </span>Add</a>
       </li>
       <li>
-        <a href="#"><span class="material-symbols-outlined"> flag </span>All Reports</a>
-      </li>
-      <li>
-        <a href="#"><span class="material-symbols-outlined">
-            notifications_active </span>Notifications</a>
+        <a href="order.php"><span class="material-symbols-outlined">
+            notifications_active </span>Order</a>
       </li>
       <h4>
         <span>Account</span>
@@ -100,23 +91,22 @@ $result = mysqli_query($conn,$sql);
   <div class="product-list">
     <?php
     if ($result->num_rows > 0) {
-        // แสดงรายการสินค้าทีละรายการ
         while ($row = $result->fetch_assoc()) {
             echo '<div class="product-item">';
             echo '<img src="img/' . $row["p_pic"] . '" alt="' . $row["p_name"] . '">';
             echo '<h2>' . $row["p_name"] . '</h2>';
+            echo '<p> รหัสสินค้า: '.$row["p_id"].'</p>';
             echo '<p>ราคา: ฿' . number_format($row["p_price"], 2) . '</p>';
-            echo '<div class="button-group">'; // กลุ่มปุ่ม
-            echo '<button class="select-button">สั่ง</button>'; // ปุ่มเลือก
-            echo '</div>';
+            echo '<a href="order.php?p_id=' . $row["p_id"] . '&act=add" style="background-color: #4CAF50; color: white; padding: 4px 20px; border-radius: 5px; text-decoration: none;">สั่ง</a>';
             echo '</div>';
         }
     } else {
         echo "<p>ไม่มีสินค้าที่จะแสดง</p>";
     }
-    $conn->close(); // ปิดการเชื่อมต่อ
+    $conn->close();
     ?>
 </div>
+
 
 
 
