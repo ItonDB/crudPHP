@@ -59,7 +59,8 @@ if (!$query) {
         <a href="add_product.php"><span class="material-symbols-outlined"> move_up </span>Add</a>
       </li>
       <li>
-        <a href="order.php"><span class="material-symbols-outlined"> notifications_active </span>Order</a>
+        <a href="report.php"><span class="material-symbols-outlined">
+            List </span>Report</a>
       </li>
       <h4>
         <span>Account</span>

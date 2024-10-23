@@ -5,17 +5,30 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
+
+include('conn.php');
+// ตรวจสอบการเชื่อมต่อ
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
+$show = "SELECT * FROM report";
+$query = mysqli_query($conn, $show);
+
+if (!$query) {
+    die("Query failed: " . mysqli_error($conn));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add page</title>
+  <title>Report</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="from.css"/>
   <link rel="stylesheet" href="table.css" />
 </head>
 <body>
@@ -46,7 +59,6 @@ if (!isset($_SESSION['username'])) {
         <a href="add_product.php"><span class="material-symbols-outlined"> move_up </span>Add</a>
       </li>
       <li>
-      <li>
         <a href="report.php"><span class="material-symbols-outlined">
             List </span>Report</a>
       </li>
@@ -69,32 +81,36 @@ if (!isset($_SESSION['username'])) {
     </div>
   </aside>
 
-  <div class="form-container">
-    <h2>บันทึกสินค้า</h2>
-    <form action="save_product.php" method="POST" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="name">ชื่อสินค้า</label>
-        <input type="text" id="p_name" name="p_name" placeholder="กรอกชื่อสินค้า" required>
-      </div>
-
-      <div class="form-group">
-        <label for="email">ราคา</label>
-        <input type="text" id="p_price" name="p_price" placeholder="กรอกราคา" required>
-      </div>
-
-      <div class="form-group">
-        <label for="email">จำนวน</label>
-        <input type="text" id="p_quantity" name="p_quantity" placeholder="กรอกจำนวน" required>
-      </div>
-
-      <div class="form-group">
-        <label for="profileImage">เพิ่มรูปภาพ</label>
-        <input type="file" id="p_pic" name="p_pic" accept="image/*" required>
-      </div>
-
-      <div class="form-group">
-        <button type="submit">บันทึก</button>
-      </div>
-    </form>
+  <div class="container">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>รหัสสินค้า</th>
+                    <th>ชื่อสินค้า</th>
+                    <th>ราคา</th>
+                    <th>ราคารวม</th>
+                    <th>จำนวน</th>
+                    <th>วันที่</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php while($result_product = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
+                <tr>
+                    <td><?php echo $result_product['r_id']; ?></td>
+                    <td><?php echo $result_product['p_id']; ?></td>
+                    <td><?php echo $result_product['r_name']; ?></td>
+                    <td><?php echo $result_product['r_price']; ?></td>
+                    <td><?php echo $result_product['r_total']; ?></td>
+                    <td><?php echo $result_product['r_quantity']; ?></td>
+                    <td><?php echo $result_product['r_date']; ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+  </div>
+            
 </body>
 </html>

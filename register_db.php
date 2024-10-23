@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "</script>";
         }
     } else {
-        // บันทึกรหัสผ่านแบบไม่เข้ารหัส
+        // บันทึกรหัสผ่าน
         $stmt = $conn->prepare("INSERT INTO user (username, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $password_1);
 

@@ -4,6 +4,7 @@
 	//ประกาศตัวแปรเพื่อรับค่าจากช่องกรอก
 	$p_name = $_POST['p_name'];
 	$p_price = $_POST['p_price'];
+	$p_quantity = $_POST['p_quanttity'];
 
 	$fileupload = $_FILES['p_pic']['tmp_name'];
 	$fileupload_name = $_FILES['p_pic']['name'];
@@ -12,8 +13,8 @@
 
 
 	//ประกาศตัวแปรเพื่อเอาค่าลง Database
-	$sql = "INSERT INTO product (p_name,p_price) VALUES
-	('$p_name','$p_price')";
+	$sql = "INSERT INTO product (p_name,p_price,p_quantity) VALUES
+	('$p_name','$p_price','$p_quantity')";
 	
 
 	$query = mysqli_query($conn,$sql);
