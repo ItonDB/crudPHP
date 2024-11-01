@@ -124,7 +124,7 @@ $top_product = mysqli_fetch_assoc($result_top_product);
     </div>
     <div class="card">
         <h3>จำนวนบัญชีผู้ใช้</h3>
-        <p><?php echo $total_user; ?>บัญชี</p>
+        <p><?php echo $total_user; ?> บัญชี</p>
     </div>
 
     <table>

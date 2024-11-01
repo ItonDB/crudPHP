@@ -4,7 +4,7 @@
 	//ประกาศตัวแปรเพื่อรับค่าจากช่องกรอก
 	$p_name = $_POST['p_name'];
 	$p_price = $_POST['p_price'];
-	$p_quantity = $_POST['p_quanttity'];
+	$p_quantity = $_POST['p_quantity'];
 
 	$fileupload = $_FILES['p_pic']['tmp_name'];
 	$fileupload_name = $_FILES['p_pic']['name'];
